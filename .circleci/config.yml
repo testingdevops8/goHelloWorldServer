@@ -14,7 +14,7 @@ jobs:
           name: Install Dependencies
           command: go build
       - run: | 
-          docker build -t testingdevops8/hello:foo
+          docker build -t testingdevops8/hello:foo .
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
           docker push testingdevops8/hello:$TAG
       - save_cache:
