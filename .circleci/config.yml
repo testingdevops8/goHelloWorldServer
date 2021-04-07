@@ -13,6 +13,12 @@ jobs:
       - run:
           name: Install Dependencies
           command: go build
+      - run: 
+          name: Push 
+          command:       
+          docker build -t testingdevops8/hello:$TAG .
+          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          docker push testingdevops8/hello:$TAG
       - save_cache:
           key: go-mod-v4-{{ checksum "go.sum" }}
           paths:
